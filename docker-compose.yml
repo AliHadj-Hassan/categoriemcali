@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  node:
+    restart: always
+    build: .
+    ports:
+       - 3002:3002
+    volumes:
+      - ./:/code
+    networks:
+      categoriemc:
+        ipv4_address: 172.30.0.3
+  mongo:
+      #network_mode: "host"
+      image: mongo
+      ports:
+        - 27017:27017
+      volumes:
+        - C:\Users\FLAM\Desktop\db:/data/db
+      networks:
+        categoriemc:
+          ipv4_address: 172.30.0.2
+networks:
+  categoriemc:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
+ 
